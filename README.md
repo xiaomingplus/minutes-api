@@ -463,7 +463,9 @@
 		params:{
 		"userId":1,
 		"token":"debug",
-
+		"page":1,//需要的页数  默认 1
+		"pageSize":15 //每页的数据页,默认15
+		"type":"server" //需要的类型  consumer,all 默认是all
 		},
 		return:{
 		    "code": 200,
@@ -580,20 +582,21 @@
 		{
 		url:"/api/system",
 		methods:"GET",
-		return:{
-	 		{
+		return:	   
+		{
 		    "code": 200,
 		    "description": "ok",
 		    "message": "成功",
 		    "data": {
-		        "version": "0.0.1",
-		        "weight": 0.7,
-		        "distance": 1.2,
-		        "time": 0.1,
+		        "version": "0.0.1", //最新版本号
+		        "speedMax": 2,   //区分速度快的阀值
+		        "distanceFast": 0.003,  //速度快的每米的价格
+		        "distanceSlow": 0.002,
+		        "distanceMin": 0.0005,
+		        "speedMin": 0.7,
 		        "data": {},
 		        "updateAt": 1436097999
 		    }
-	    }
 		}
 		}
 
