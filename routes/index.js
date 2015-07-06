@@ -60,6 +60,15 @@ router.post('/api/switch',check.isLogin,function(req,res){
   accounts.switch(req,res);
 });
 
+router.post('/api/location',check.isLogin,check.isServer,function(req,res){
+accounts.postLocation(req,res);
+});
+
+
+router.get('/api/location',check.isLogin,check.isServer,function(req,res){
+accounts.getLocation(req,res);
+});
+
 /**
  * 账户余额管理相关
  */
@@ -84,9 +93,40 @@ router.post('/api/disable',check.isLogin,check.isServer,function(req,res){
   order.disable(req,res);
 });
 
-router.post('/api/order/start',check.isLogin,check.isConsumer,function(req,res){
+router.post('/api/order',check.isLogin,check.isConsumer,function(req,res){
+  order.order(req,res);
+});
+
+router.post('/api/order/from/cancel',check.isLogin,function(req,res){
+  order.fromCancel(req,res);
+});
+
+router.post('/api/order/to/cancel',check.isLogin,function(req,res){
+  order.toCancel(req,res);
+});
+
+
+router.post('/api/order/start',check.isLogin,check.isServer,function(req,res){
   order.start(req,res);
-})
+});
 
+router.post('/api/order/finish',check.isLogin,check.isServer,function(req,res){
+  order.finish(req,res);
+});
 
+router.post('/api/score/from',check.isLogin,function(req,res){
+order.fromScore(req,res);
+});
+
+router.post('/api/score/to',check.isLogin,function(req,res){
+order.toScore(req,res);
+});
+
+router.get('/api/order/list',check.isLogin,function(req,res){
+  order.list(req,res);
+});
+
+router.get('/api/order/detail',check.isLogin,function(req,res){
+  order.detail(req,res);
+});
 module.exports = router;

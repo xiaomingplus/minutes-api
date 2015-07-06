@@ -87,7 +87,84 @@ var code  = {
     'noServer':{
         code:1021,
         message:"附近没有空闲的接单人"
+    },
+    'noX':{
+        code:1022,
+        message:"缺少参数 x"
+    },
+    'noY':{
+        code:1023,
+        message:"缺少参数 y"
+    },
+    'noOriginX':{
+        code:1023,
+        message:"缺少参数 originX"
+    },
+    'noOriginY':{
+        code:1024,
+        message:"缺少参数 originY"
+    },
+    'noOrderId':{
+        code:1025,
+        message:"缺少参数 orderId"
+    },
+    'noCurrentOrder':{
+        code:1026,
+        message:"没有正在进行的订单"
+    },
+    'noDestinationX':{
+        code:1027,
+        message:"缺少参数 destinationX"
+    },
+    'noDestinationY':{
+        code:1028,
+        message:"缺少参数 destinationY"
+    },
+    'noPositionX':{
+        code:1029,
+        message:"缺少参数 positionX"
+    },
+    'noPositionY':{
+        code:1030,
+        message:"缺少参数 positionY"
+    },
+    'WalletError':{
+        code:1031,
+        message:"钱包异常"
+    },
+    'moneyDept':{
+        code:1032,
+        message:"您有欠款未还请,请先充值"
+    },
+    'serverHasOffline':{
+        code:1033,
+        message:"接单人已下线"
+    },
+    'noScore':{
+        code:1034,
+        message:"缺少参数 score"
+    },
+    'noOrder':{
+        code:1035,
+        message:"没有此订单"
+    },
+    'orderNotComplete':{
+        code:1036,
+        message:"该订单没有完成或已被取消"
+    },
+    'orderHasScore':{
+        code:1037,
+        message:"您已经评价过该订单了"
+    },
+    'scoreMustGt0':{
+        code:1038,
+        message:"评分必须大于0"
+    },
+    'notYourOrder':{
+        code:1039,
+        message:"不是你的订单"
     }
+
 
 };
 

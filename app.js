@@ -84,7 +84,7 @@ app.listen(9871,function(){
 
 setInterval(function(){
     console.log('删除之前');
-    console.log(datas);
+    console.log(datas.location);
 
     for(var i in datas.code){
         if((common.time() - datas.code[i].createAt)>300){
@@ -93,11 +93,11 @@ setInterval(function(){
     }
 
     console.log('删除之后');
-    console.log(datas);
+    console.log(datas.location);
 
 
 
-},5*60*1000);
+},10*1000);
 
 datas.loadToken();
 datas.loadSetting();

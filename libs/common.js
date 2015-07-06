@@ -27,6 +27,8 @@ common.date = function (time) {
 
 
 common.getDistance = function(x1,y1,x2,y2){
+    
+    console.log(x1,y1,x2,y2);
 
     return Math.sqrt((Math.abs(parseInt(x1)-parseInt(x2)))*(Math.abs(parseInt(x1)-parseInt(x2)))+(Math.abs(parseInt(y1)-parseInt(y2)))*(Math.abs(parseInt(y1)-parseInt(y2))))
 };

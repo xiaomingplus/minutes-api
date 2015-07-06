@@ -221,8 +221,8 @@
 		params:{
 		"userId":1,
 		"token":"debug",
-		"longitude":30.123414,
-		"latitude":110.312313
+		"x":3022222.22, //接单人的实时位置,需转为摩卡托坐标的x
+		"y":11022222.22 //接单人的实时位置,需转为摩卡托坐标的y
 		},
 		return:{
 		    "code": 200,
@@ -263,13 +263,22 @@
 		params:{
 		"userId":1,
 		"token":"debug",
-
+        "x":100,
+        "y":100
 		},
-		return:{
+		return:
+			{
 		    "code": 200,
 		    "description": "ok",
 		    "message": "成功",
-		    "data": ""
+		    "data": {
+		        "orderId": 13,
+		        "toUserId": "4",
+		        "toUserNickname": "小花",
+		        "toUserTel": "18613227074",
+		        "toUserGender": 2,
+		        "toUserToScore": 5
+		    }
 		}
 		}
 
@@ -280,8 +289,11 @@
 		url:"/api/order/start",
 		methods:"POST",
 		params:{
-		"userId":1,
+		"userId":4,
 		"token":"debug",
+		"orderId":13,  //订单id
+		"x":100 //开始行程的墨卡托坐标x
+		"y":100 //开始行程的摩卡托坐标y
 
 		},
 		return:{
@@ -293,46 +305,40 @@
 		}
 		
 		
-7. 是否匹配接口
-
-		{
-		url:"/api/order/start",
-		methods:"POST",
-		params:{
-		"userId":1,
-		"token":"debug",
-
-		},
-		return:{
-		    "code": 200,
-		    "description": "ok",
-		    "message": "成功",
-		    "data": ""
-		}
-		}
-
 
 
 7. 完成订单接口
 
 		{
-		url:"/api/order/match",
+		url:"/api/order/finish",
 		methods:"POST",
 		params:{
-		"userId":1,
+		"userId":4,
 		"token":"debug",
-		"orderId":10000
+		"orderId":13,
+		"x":400,
+		"y":500
 		},
 		return:{
 		    "code": 200,
 		    "description": "ok",
 		    "message": "成功",
-		    "data": ""
-		}
-		}
+		    "data": {
+		        "distance": 500,  //本次行程距离，单位m
+		        "time": 64,		//本次行程所花时间，单位s
+		        "price": 1.5, //本次行程的所花费用，单位元
+		        "fromUserId": 1,  //下单人id
+		        "toUserId": 4,    //接单人id	
+		        "originX": 100,  //出发地点x
+		        "originY": 100,		//出发地点y
+		        "destinationX": 400, //目的地点x
+		        "destinationY": 500,	//目的地点y
+       			 	}
+        		}		
+        }
 
 
-8. 用户取消订单接口
+8. 下单人取消订单接口
 
 		{
 		url:"/api/order/from/cancel",
@@ -340,7 +346,7 @@
 	    params:{
 		"userId":1,
 		"token":"debug",
-
+		"orderId":1 //订单编号
 		},
 		return:{
 		    "code": 200,
@@ -350,16 +356,15 @@
 		}
 		}
 
-
-9. 接单人取消订单接口
+8. 接单人取消订单接口
 
 		{
 		url:"/api/order/to/cancel",
-		methods:"POST",
-		params:{
+	    methods:"POST",
+	    params:{
 		"userId":1,
 		"token":"debug",
-
+		"orderId":1
 		},
 		return:{
 		    "code": 200,
@@ -368,7 +373,6 @@
 		    "data": ""
 		}
 		}
-
 
 10. 获取接单人当前位置
 
@@ -378,13 +382,15 @@
 		params:{
 		"userId":1,
 		"token":"debug",
-
 		},
 		return:{
 		    "code": 200,
 		    "description": "ok",
 		    "message": "成功",
-		    "data": ""
+		    "data": {
+		        "x": "102",
+		        "y": "101"
+		    }
 		}
 		}
 
@@ -397,6 +403,8 @@
 		params:{
 		"userId":1,
 		"token":"debug",
+		"x":100,
+		"y":100
 
 		},
 		return:{
@@ -408,15 +416,35 @@
 		}
 
 
-12. 给某一订单评分接口
+12. 下单人给某一订单评分接口
 
 		{
-		url:"/api/score",
+		url:"/api/score/to",
 		methods:"POST",
 		params:{
 		"userId":1,
 		"token":"debug",
+		"orderId":10,
+		"score":5 //必须大于0，小于5
+		},
+		return:{
+		    "code": 200,
+		    "description": "ok",
+		    "message": "成功",
+		    "data": ""
+		}
+		}
 
+12. 接单人给某一订单评分接口
+
+		{
+		url:"/api/score/from",
+		methods:"POST",
+		params:{
+		"userId":1,
+		"token":"debug",
+		"orderId":10,
+		"score":5 //必须大于0，小于5
 		},
 		return:{
 		    "code": 200,
@@ -441,7 +469,68 @@
 		    "code": 200,
 		    "description": "ok",
 		    "message": "成功",
-		    "data": ""
+		    "data":  [
+		        {
+		            "orderId": 22,
+		            "fromUserId": 1,  //下单人id
+		            "fromNickName": "小明",  //下单人昵称
+		            "fromTel": "18613227075",
+		            "fromGender": 1,
+		            "toUserId": 4,
+		            "toNickName": "小花",
+		            "toTel": "18613227074",
+		            "toGender": 2,
+		            "price": 1.5,
+		            "createAt": 1436169590,
+		            "startAt": 1436169997,
+		            "finishAt": 1436170006,
+		            "originX": 100,
+		            "originY": 100,
+		            "destinationX": 400,
+		            "destinationY": 500,
+		            "status": "已完成"
+		        },
+		        {
+		            "orderId": 21,
+		            "fromUserId": 1,
+		            "fromNickName": "小明",
+		            "fromTel": "18613227075",
+		            "fromGender": 1,
+		            "toUserId": 4,
+		            "toNickName": "小花",
+		            "toTel": "18613227074",
+		            "toGender": 2,
+		            "price": 1.5,
+		            "createAt": 1436168629,
+		            "startAt": 1436168641,
+		            "finishAt": 1436168644,
+		            "originX": 100,
+		            "originY": 100,
+		            "destinationX": 400,
+		            "destinationY": 500,
+		            "status": "已完成"
+		        },
+		        {
+		            "orderId": 20,
+		            "fromUserId": 1,
+		            "fromNickName": "小明",
+		            "fromTel": "18613227075",
+		            "fromGender": 1,
+		            "toUserId": 4,
+		            "toNickName": "小花",
+		            "toTel": "18613227074",
+		            "toGender": 2,
+		            "price": 1.5,
+		            "createAt": 1436167779,
+		            "startAt": 1436167787,
+		            "finishAt": 1436167792,
+		            "originX": 100,
+		            "originY": 100,
+		            "destinationX": 400,
+		            "destinationY": 500,
+		            "status": "已完成"
+		        }
+		    ]
 		}
 		}
 
@@ -454,15 +543,33 @@
 		params:{
 		"userId":1,
 		"token":"debug",
-
+		"orderId":2
 		},
 		return:{
 		    "code": 200,
 		    "description": "ok",
 		    "message": "成功",
-		    "data": ""
-		}
-		}
+		    "data": {
+		        "orderId": 5,
+		        "fromUserId": 1,
+		        "fromNickName": "小明",
+		        "fromTel": "18613227075",
+		        "fromGender": 1,
+		        "toUserId": 4,
+		        "toNickName": "小花",
+		        "toTel": "18613227074",
+		        "toGender": 2,
+		        "price": 0.0743333,
+		        "createAt": 1436159908,
+		        "startAt": 0,
+		        "finishAt": 1436159949,
+		        "originX": 100,
+		        "originY": 100,
+		        "destinationX": 103,
+		        "destinationY": 104,
+		        "status": "已完成"
+		    }
+		}		}
 
 
 

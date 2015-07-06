@@ -19,8 +19,10 @@ check.isLogin = function(req,res,next){
 
     if(userId && token){
 
-        if(datas.token[userId].token == token){
+        if(datas.token[userId] && datas.token[userId].token == token){
             next();
+        }else if(datas.token[userId]){
+res.dump('tokenError');
         }else{
             res.dump('notLogin');
 

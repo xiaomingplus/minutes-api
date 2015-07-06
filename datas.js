@@ -89,21 +89,25 @@ datas.system = {
 datas.loadToken = function(){
     conn.query(
         {
-            sql:"select * from minutes_token"
+            sql:"select * from minutes_user where token !=''"
         },function(e,r){
             if(e){
                 console.log(e);
                 console.log(new Date());
             }else{
-
+//console.log(r);
                 if(r.length>0){
-
                     for(var i =0 ;i< r.length;i++){
-                        datas.token[r[i].userId]={
+                        datas.token[r[i].id]={
                             type:r[i].type,
-                            token:r[i].token
+                            token:r[i].token,
+                            tel:r[i].tel,
+                            nickname:r[i].nickname,
+                            gender:r[i].gender,
+                            money:r[i].money
                         };
                     }
+                    console.log(datas.token);
                     console.log('token载入完成');
                 }else{
                     console.log('数据库中无token');
@@ -137,12 +141,14 @@ datas.loadSetting = function(){
                 datas.system ={
 
                     "version":r[0].version,
-                    "weight":r[0].weight,
-                    "distance":r[0].distance,
-                    "time":r[0].time,
+                    "speedMax":r[0].speedMax,
+                    "distanceFast":r[0].distanceFast,
+                    "distanceSlow":r[0].distanceSlow,
+                    "distanceMin":r[0].distanceMin,
+                    "speedMin":r[0].speedMin,
                     "data":data,
                     "updateAt":r[0].updateAt
-                }
+                };
                 console.log('基础设置载入完成');
             }
         }
@@ -154,17 +160,23 @@ datas.loadSetting = function(){
  * 生成登录用户的token
  * @param userId
  */
-datas.genToken = function(userId){
+datas.genToken = function(userId,userinfo){
    var hash = crypto.createHash('md5');
     
     var md5=hash.update((""+userId+"dsgygb"+common.time()));
    var token = md5.digest('hex');
+
     datas.token[userId]={
 
         token:token,
         type:0,
-        createAt:common.time()
+        createAt:common.time(),
+        nickname:userinfo.nickname,
+        gender:userinfo.gender,
+        tel:userinfo.tel,
+        money:userinfo.money
     };
+
     return token;
 
 };
