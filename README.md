@@ -19,6 +19,8 @@
 	
 3.调用需要登录验证接口均需传入参数```{userId:1,token:"xxxxxxxxxx"}```
 
+4.接口的服务器地址： ```http://minutes.scuinfo.com```
+
 
 
 
