@@ -64,7 +64,7 @@
 		    "description": "ok",
 		    "message": "成功",
 		    "data": {
-		    
+		        "userId":1,
 		        "tel": "18613227075", //电话
 		        "nickname": "小明", //昵称
 		        "gender": 1,  //0为未知,1为男性,2为女性
