@@ -152,15 +152,6 @@ accounts.signin = function(req,res){
 
                                 if(rr.insertId) {
 
-                                    conn.query(
-                                        {
-                                            sql:"insert into minutes_wallet (userId) values ("+rr.insertId+")"
-                                        },function(eee,rrr){
-                                            if(eee){
-                                                res.log(eee);
-                                                res.dump('mysqlError');
-                                            }else{
-
                                                 var token = datas.genToken(rr.insertId,{
                                                     nickname:"",
                                                     gender:0,
@@ -177,13 +168,11 @@ accounts.signin = function(req,res){
                                                 });
                                                 accounts.mysqlToken(rr.insertId,0,token);
 
-                                            }
 
 
-                                        }
-                                    )
 
-
+                                }else{
+                                    res.dump('mysqlError');
 
                                 }
                             }
