@@ -48,7 +48,7 @@
 		}
 		}
 
-2. 登录接口
+2. 登录接口（老用户）
 
 
 		{
@@ -64,6 +64,7 @@
 		    "description": "ok",
 		    "message": "成功",
 		    "data": {
+		    
 		        "tel": "18613227075", //电话
 		        "nickname": "小明", //昵称
 		        "gender": 1,  //0为未知,1为男性,2为女性
@@ -77,6 +78,34 @@
 		}
 
 		}
+		
+3. 登录(新用户)
+
+
+		{
+		url:"/api/signin",
+		methods:"POST",
+		params:{
+		tel:18613227077, //电话号码
+		code:123456  //验证码
+		},
+		return:{
+		
+		    "code": 200,
+		    "description": "ok",
+		    "message": "成功",
+		    "data": {
+		        "userId": 7,
+		        "tel": "18613227077",
+		        "createAt": 1436271083,
+		        "token": "57332d5f17151799b341db939ac43938",
+		        "type": 0
+		    }
+		}
+		
+
+		}
+
 
 
 4. 退出接口
