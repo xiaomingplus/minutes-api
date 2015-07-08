@@ -263,7 +263,15 @@ accounts.userinfo = function(req,res){
             }else{
 
                 if(r.length>0){
-                    res.dump('ok',r[0]);
+                    res.dump('ok',{
+                        "userId": r[0].id,
+                        "tel": r[0].tel,
+                        "nickname": r[0].nickname,
+                        "gender": r[0].gender,
+                        "createAt": r[0].createAt, //注册时间
+                        "fromScore": r[0].fromScore?r[0].fromScore:0,
+                        "toScore":r[0].toScore?r[0].toScore:0
+                    });
                 }else{
                     res.dump('noUser');
                 }

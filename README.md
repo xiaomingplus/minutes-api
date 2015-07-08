@@ -144,15 +144,17 @@
 		    "description": "ok",
 		    "message": "成功",
 		    "data": {
-		        "id": 1,
+		        "userId": 1,
 		        "tel": "18613227075",
-		        "nickname": "小明plus",
+		        "nickname": "小明",
 		        "gender": 1,
-		        "createAt": 1436089167, //注册时间
-		        "fromScore": 0,
+		        "createAt": 1436100280,
+		        "fromScore": 1.25,
 		        "toScore": 0
 		    }
-		}		}
+		}
+	
+				}
 
 		}
 
