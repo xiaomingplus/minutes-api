@@ -121,12 +121,15 @@ order.order  = function(req,res){
                                                     res.dump('mysqlError');
                                                 }else{
 
+
+                                                    //todo 这里为了sb韩红眼注释了一下
+                                                    /*
                                                     datas.location.busy[toUserId]={
                                                         x:datas.location.free[toUserId].x,
                                                         y:datas.location.free[toUserId].y
                                                     };
                                                     delete datas.location.free[toUserId];
-
+                                                    */
 
                                                     res.dump('ok',{
                                                         orderId:rr.insertId,
