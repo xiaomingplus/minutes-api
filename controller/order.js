@@ -74,7 +74,10 @@ order.order  = function(req,res){
                 res.log(e);
                 res.dump('mysqlError');
             }else{
-                if(r.length>0){
+
+                //todo 这里为了sb韩红眼注释了一下,改为等于
+
+                if(r.length<0){
                     res.dump('mustCompleteCurrentOrder');
                 }else{
                     var serversDistance = [],servers=[];
