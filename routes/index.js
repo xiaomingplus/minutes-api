@@ -65,7 +65,7 @@ accounts.postLocation(req,res);
 });
 
 
-router.get('/api/location',check.isLogin,check.isServer,function(req,res){
+router.get('/api/location',check.isLogin,function(req,res){
 accounts.getLocation(req,res);
 });
 
