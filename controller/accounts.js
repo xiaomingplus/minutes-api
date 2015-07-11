@@ -341,13 +341,16 @@ accounts.money = function(req,res){
 };
 
 accounts.getLocation = function(req,res){
-    
-
-    if(datas.location.free[req.query.userId]){
-        res.dump('ok',datas.location.free[req.query.userId]);
+    if(!req.query.toUserId){
+        res.dump("noToUserId");
         return;
-    }else if(datas.location.busy[req.query.userId]){
-        res.dump('ok',datas.location.busy[req.query.userId]);
+    }
+
+    if(datas.location.free[req.query.toUserId]){
+        res.dump('ok',datas.location.free[req.query.toUserId]);
+        return;
+    }else if(datas.location.busy[req.query.toUserId]){
+        res.dump('ok',datas.location.busy[req.query.toUserId]);
         return;
     }else{
         res.dump('serverHasOffline');

@@ -163,6 +163,10 @@ var code  = {
     'notYourOrder':{
         code:1039,
         message:"不是你的订单"
+    },
+    'noToUserId':{
+        code:1040,
+        message:"缺少参数 toUserId"
     }
 
 
