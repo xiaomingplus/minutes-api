@@ -7,9 +7,36 @@ var check = {
 check.isLogin = function(req,res,next){
     var userId,token;
     if(req.method=="POST"){
+
+        if(!req.body.userId){
+            res.dump("noUserId");
+            return;
+        }
+
+        if(!req.body.token){
+            res.dump("noToken");
+            return;
+        }
+
+
+
+
+
         userId=req.body.userId;
         token = req.body.token;
     }else if(req.method == 'GET'){
+
+
+        if(!req.query.userId){
+            res.dump("noUserId");
+            return;
+        }
+
+        if(!req.query.token){
+            res.dump("noToken");
+            return;
+        }
+
         userId = req.query.userId;
         token= req.query.token;
     }else{

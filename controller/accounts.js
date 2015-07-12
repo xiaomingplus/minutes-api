@@ -53,7 +53,7 @@ accounts.complete = function(req,res){
     conn.query(
         {
             sql:"update minutes_user set nickname ='"+req.body.nickname+"',gender="+req.body.gender+" where id="+req.body.userId,
-        },function(e,r){
+        },function(e){
             if(e){
                 res.log(e);
                 res.dump('mysqlError');

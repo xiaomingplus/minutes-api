@@ -171,6 +171,14 @@ var code  = {
     'noPlace':{
         code:1041,
         message:"缺少参数 place"
+    },
+    'noUserId':{
+        code:1042,
+        message:"缺少参数 userId"
+    },
+    'noToken':{
+        code:1043,
+        message:"缺少参数 token"
     }
 
 

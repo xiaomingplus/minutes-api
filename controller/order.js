@@ -75,9 +75,8 @@ order.order  = function(req,res){
                 res.dump('mysqlError');
             }else{
 
-                //todo 这里为了sb韩红眼注释了一下,改为等于
 
-                if(r.length<0){
+                if(r.length==0){
                     res.dump('mustCompleteCurrentOrder');
                 }else{
                     var serversDistance = [],servers=[];
@@ -125,14 +124,13 @@ order.order  = function(req,res){
                                                 }else{
 
 
-                                                    //todo 这里为了sb韩红眼注释了一下
-                                                    /*
+
                                                     datas.location.busy[toUserId]={
                                                         x:datas.location.free[toUserId].x,
                                                         y:datas.location.free[toUserId].y
                                                     };
                                                     delete datas.location.free[toUserId];
-                                                    */
+
 
                                                     res.dump('ok',{
                                                         orderId:rr.insertId,
