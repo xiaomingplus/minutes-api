@@ -145,7 +145,7 @@ order.order  = function(req,res){
 
                                                     notice.send(toUserId,"你有一个新单子","点击查看详情",{
                                                         fromUserId:req.body.userId,
-                                                        fromUserNickName:datas.token[req.body.userId].nickname,
+                                                        fromUserNickname:datas.token[req.body.userId].nickname,
                                                         fromUserTel:datas.token[req.body.userId].tel,
                                                         fromUserGender:datas.token[req.body.userId].gender
                                                     });
@@ -704,11 +704,11 @@ order.list = function(req,res){
                                         {
                                             orderId:r[i].id,
                                             fromUserId:r[i].fromUserId,
-                                            fromNickName:userinfo[r[i].fromUserId].nickname,
+                                            fromNickname:userinfo[r[i].fromUserId].nickname,
                                             fromTel:userinfo[r[i].fromUserId].tel,
                                             fromGender:userinfo[r[i].fromUserId].gender,
                                             toUserId:r[i].toUserId,
-                                            toNickName:userinfo[r[i].toUserId].nickname,
+                                            toNickname:userinfo[r[i].toUserId].nickname,
                                             toTel:userinfo[r[i].toUserId].tel,
                                             toGender:userinfo[r[i].toUserId].gender,
                                             price:r[i].price,
@@ -806,11 +806,11 @@ order.detail = function(req,res){
                                     res.dump('ok',{
                                         orderId:r[0].id,
                                         fromUserId:r[0].fromUserId,
-                                        fromNickName:userinfo[r[0].fromUserId].nickname,
+                                        fromNickname:userinfo[r[0].fromUserId].nickname,
                                         fromTel:userinfo[r[0].fromUserId].tel,
                                         fromGender:userinfo[r[0].fromUserId].gender,
                                         toUserId:r[0].toUserId,
-                                        toNickName:userinfo[r[0].toUserId].nickname,
+                                        toNickname:userinfo[r[0].toUserId].nickname,
                                         toTel:userinfo[r[0].toUserId].tel,
                                         toGender:userinfo[r[0].toUserId].gender,
                                         price:r[0].price,
