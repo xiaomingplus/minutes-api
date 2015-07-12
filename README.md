@@ -150,7 +150,9 @@
 		        "gender": 1,
 		        "createAt": 1436100280,
 		        "fromScore": 1.25,
-		        "toScore": 0
+		        "toScore": 0,
+		        "type":1  //下单人为1，接单人为2，未选择为0
+		        "token":"xx" //用户当前token
 		    }
 		}
 	
@@ -604,6 +606,16 @@
 		        "destinationX": 103,
 		        "destinationY": 104,
 		        "status": "已完成"
+		        
+		        /*
+		        var status ={
+                                                        '0':"已匹配",
+                                                        '1':"已开始服务",
+                                                        "2":"已完成",
+                                                        "3":"用户已取消",
+                                                        "4":"接单人已取消"
+                                                    };
+		        */
 		    }
 		}		}
 

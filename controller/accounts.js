@@ -271,6 +271,8 @@ accounts.userinfo = function(req,res){
                         "createAt": r[0].createAt, //注册时间
                         "fromScore": r[0].fromScore?r[0].fromScore:0,
                         "toScore":r[0].toScore?r[0].toScore:0
+                        "type":r[0].type,
+                        "token":r[0].token
                     });
                 }else{
                     res.dump('noUser');
