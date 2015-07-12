@@ -167,6 +167,10 @@ var code  = {
     'noToUserId':{
         code:1040,
         message:"缺少参数 toUserId"
+    },
+    'noPlace':{
+        code:1041,
+        message:"缺少参数 place"
     }
 
 
