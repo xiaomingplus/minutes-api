@@ -335,7 +335,7 @@ order.finish = function(req,res){
 
                     conn.query(
                         {
-                            sql:"update minutes_order set status=2,destinationPlace="+req.body.place+",destinationX="+req.body.destinationX+",destinationY="+req.body.destinationY+",price="+price+",finishAt="+common.time()+" where id="+req.body.orderId+" and toUserId="+req.body.userId+" and status=1"
+                            sql:"update minutes_order set distance="+distance+",takeTime="+time+",status=2,destinationPlace="+req.body.place+",destinationX="+req.body.destinationX+",destinationY="+req.body.destinationY+",price="+price+",finishAt="+common.time()+" where id="+req.body.orderId+" and toUserId="+req.body.userId+" and status=1"
                         },function(e,r){
                             if(e){
                                 res.log(e);
@@ -382,9 +382,12 @@ order.finish = function(req,res){
                                         toUserId:req.body.userId,
                                         originX:rr[0].originX,
                                         originY:rr[0].originY,
+                                        distance:distance,
+                                        takeTime:time,
                                         originPlace:rr[0].originPlace,
                                         destinationX:req.body.destinationX,
                                         destinationY:req.body.destinationY,
+                                        destinationPlace:rr[0].destinationPlace
                                     });
 
                                 }else{
@@ -699,7 +702,6 @@ order.list = function(req,res){
                                     "4":"接单人已取消"
                                 };
                                 for(var i=0;i< r.length;i++){
-
                                     data.push(
                                         {
                                             orderId:r[i].id,
@@ -711,14 +713,20 @@ order.list = function(req,res){
                                             toNickname:userinfo[r[i].toUserId].nickname,
                                             toTel:userinfo[r[i].toUserId].tel,
                                             toGender:userinfo[r[i].toUserId].gender,
+                                            toScore:r[i].toScore,
+                                            fromScore:r[i].fromScore,
                                             price:r[i].price,
                                             createAt:r[i].createAt,
                                             startAt:r[i].startAt,
                                             finishAt:r[i].finishAt,
                                             originX:r[i].originX,
                                             originY:r[i].originY,
+                                            originPlace:r[i].originPlace,
                                             destinationX:r[i].destinationX,
                                             destinationY:r[i].destinationY,
+                                            destinationPlace:r[i].destinationPlace,
+                                            distance:r[i].distance,
+                                            takeTime:r[i].takeTime,
                                             status:status[r[i].status]
 
                                         }
@@ -798,11 +806,6 @@ order.detail = function(req,res){
                                         "4":"接单人已取消"
                                     };
 
-
-
-
-
-
                                     res.dump('ok',{
                                         orderId:r[0].id,
                                         fromUserId:r[0].fromUserId,
@@ -819,9 +822,15 @@ order.detail = function(req,res){
                                         finishAt:r[0].finishAt,
                                         originX:r[0].originX,
                                         originY:r[0].originY,
+                                        originPlace :r[0].originPlace,
                                         destinationX:r[0].destinationX,
                                         destinationY:r[0].destinationY,
-                                        status:status[r[0].status]
+                                        destinationPlace:r[0].destinationPlace,
+                                        distance:r[0].distance,
+                                        takeTime:r[0].takeTime,
+                                        status:status[r[0].status],
+                                        toScore:r[0].toScore,
+                                        fromScore:r[0].fromScore
                                     });
                                 }
                             }
