@@ -306,7 +306,7 @@ accounts.pay = function(req,res){
 
     conn.query(
         {
-            sql:"update minutes_user set money=money+"+parseInt(req.body.money)+" where id="+req.body.userId
+            sql:"update minutes_user set money=money+"+parseFloat(req.body.money)+" where id="+req.body.userId
         },function(e,r){
             if(e){
                 res.log(e);
