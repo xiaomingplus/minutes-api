@@ -272,7 +272,7 @@ order.start  =  function(req,res){
 
     conn.query(
         {
-            sql:"update minutes_order set status=1,originPlace="+req.body.place+",originX="+req.body.x+",originY="+req.body.y+",startAt="+common.time()+" where id="+req.body.orderId+" and toUserId="+req.body.userId+" and status=0"
+            sql:"update minutes_order set status=1,originPlace='"+req.body.place+"',originX="+req.body.x+",originY="+req.body.y+",startAt="+common.time()+" where id="+req.body.orderId+" and toUserId="+req.body.userId+" and status=0"
         },function(e,r){
             if(e){
                 res.log(e);
@@ -335,7 +335,7 @@ order.finish = function(req,res){
 
                     conn.query(
                         {
-                            sql:"update minutes_order set distance="+distance+",takeTime="+time+",status=2,destinationPlace="+req.body.place+",destinationX="+req.body.destinationX+",destinationY="+req.body.destinationY+",price="+price+",finishAt="+common.time()+" where id="+req.body.orderId+" and toUserId="+req.body.userId+" and status=1"
+                            sql:"update minutes_order set distance="+distance+",takeTime="+time+",status=2,destinationPlace='"+req.body.place+"',destinationX="+req.body.destinationX+",destinationY="+req.body.destinationY+",price="+price+",finishAt="+common.time()+" where id="+req.body.orderId+" and toUserId="+req.body.userId+" and status=1"
                         },function(e,r){
                             if(e){
                                 res.log(e);
