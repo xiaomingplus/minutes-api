@@ -82,7 +82,7 @@ order.order  = function(req,res){
             }else{
 
 
-                if(r.length==0){
+                if(r.length>0){
                     res.dump('mustCompleteCurrentOrder');
                 }else{
                     var serversDistance = [],servers=[];
