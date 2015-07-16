@@ -254,8 +254,61 @@ order.fromCancel = function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
-
+                    delete datas.location.busy[req.body.userId];
+                    datas.location.free[req.body.userId]={
+                        x:req.body.destinationX,
+                        y:req.body.destinationY
+                    };
                     //todo 通知
+//
+//                    var style = new Xinge.Style();
+//                    style.ring = 1;
+//                    style.vibrate = 0;
+//                    style.ringRaw = 'a';
+//                    style.smallIcon = 'b';
+//                    style.builderId = 77;
+//
+//                    var action = new Xinge.ClickAction();
+//                    action.actionType = Xinge.ACTION_TYPE_ACTIVITY;
+////action.packageName.packageName = 'com.demo.xg';
+////action.packageName.packageDownloadUrl = 'http://a.com';
+////action.packageName.confirm = 1;
+//
+//                    var androidMessage = new Xinge.AndroidMessage();
+//                    androidMessage.type = Xinge.MESSAGE_TYPE_NOTIFICATION;
+//                    androidMessage.title = '跑腿人取消了该订单';
+//                    androidMessage.content = '点击查看详情';
+//                    androidMessage.style = style;
+//                    androidMessage.action = action;
+//                    androidMessage.sendTime = parseInt(new Date().getTime()/1000);
+//                    androidMessage.expireTime = 0;
+////androidMessage.acceptTime.push(new Xinge.TimeInterval(0, 0, 23, 59));
+//
+//                    console.log({
+//                        'id': req.body.orderId+"",
+//                    });
+//                    androidMessage.customContent = {
+//                        'id': req.body.orderId+"",
+//                    };
+//                    androidMessage.multiPkg = 0;
+////androidMessage.loopTimes = 3;
+////androidMessage.loopInterval = 2;
+////And message end.
+//
+//
+////推送消息给指定账户或别名
+//                    XingeApp.pushToSingleAccount(""+toUserId, androidMessage, function(err, result){
+//                        console.log(err,result);
+//                    });
+//
+//
+//
+//                    notice.send(toUserId,"跑腿人取消了该订单","点击查看详情",{
+//                        fromUserId:req.body.userId,
+//                        fromUserNickname:datas.token[req.body.userId].nickname,
+//                        fromUserTel:datas.token[req.body.userId].tel,
+//                        fromUserGender:datas.token[req.body.userId].gender
+//                    });
 
                     res.dump('ok');
                 }else{
@@ -289,6 +342,11 @@ order.toCancel = function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
+                    delete datas.location.busy[req.body.userId];
+                    datas.location.free[req.body.userId]={
+                        x:req.body.destinationX,
+                        y:req.body.destinationY
+                    };
                     res.dump('ok');
 
                     //todo 通知
@@ -337,6 +395,7 @@ order.start  =  function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
+
                     res.dump('ok');
                 }else{
                     res.dump('noCurrentOrder');
