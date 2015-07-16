@@ -87,12 +87,13 @@ console.log("sql1:"+"select * from minutes_order where (fromUserId="+req.body.us
                 }else{
                     var serversDistance = [],servers=[];
                     for(var i in datas.location.free){
+                        console.log("空闲1"+i);
                         var distance = common.getDistance(req.body.x,req.body.y,datas.location.free[i].x,datas.location.free[i].y);
                         //if(distance<config.maxDistance){
                             serversDistance.push(distance);
                             servers.push({
                                 userId:i
-                            })
+                            });
                         //}
                     }
                     
@@ -101,11 +102,13 @@ console.log("sql1:"+"select * from minutes_order where (fromUserId="+req.body.us
                         res.dump('noServer');
                     }else{
                        var minDistance =  Math.min.apply(null,serversDistance);
-console.log(minDistance);
+console.log("最小的距离",minDistance);
+                        
+                        console.log(serversDistance);
                         for (var i=0;i<serversDistance.length;i++){
                             if(serversDistance[i]==minDistance){
                                 var toUserId = servers[i].userId;
-                                console.log(toUserId);
+                                console.log("userId"+toUserId);
                             }
                         }
                         
