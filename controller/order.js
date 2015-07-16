@@ -55,7 +55,7 @@ order.disable = function(req,res){
 
 
 order.order  = function(req,res){
-console.log(req.body);
+//console.log(req.body);
     if(!req.body.x){
         res.dump('noX');
         return;
@@ -176,8 +176,8 @@ console.log(minDistance);
                                                     androidMessage.expireTime = 0;
 //androidMessage.acceptTime.push(new Xinge.TimeInterval(0, 0, 23, 59));
                                                     androidMessage.customContent = {
-                                                        'id': "1",
-                                                        'score':"4"
+                                                        'id': rr.insertId+"",
+                                                        'score':""+rrr[0].fromScore
                                                     };
                                                     androidMessage.multiPkg = 0;
 //androidMessage.loopTimes = 3;
@@ -186,7 +186,7 @@ console.log(minDistance);
 
 
 //推送消息给指定账户或别名
-                                                    XingeApp.pushToSingleAccount('14', androidMessage, function(err, result){
+                                                    XingeApp.pushToSingleAccount(rrr[0].toUserId, androidMessage, function(err, result){
                                                         console.log(err,result);
                                                     });
 
