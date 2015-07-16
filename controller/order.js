@@ -262,11 +262,11 @@ order.fromCancel = function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
-                    delete datas.location.busy[req.body.userId];
                     datas.location.free[req.body.userId]={
-                        x:req.body.destinationX,
-                        y:req.body.destinationY
-                    };
+                        x:datas.location.busy[req.body.userId].x,
+                        y:datas.location.busy[req.body.userId].y
+                };
+                delete datas.location.busy[req.body.userId];
                     //todo 通知
 //
 //                    var style = new Xinge.Style();
@@ -350,11 +350,12 @@ order.toCancel = function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
-                    delete datas.location.busy[req.body.userId];
                     datas.location.free[req.body.userId]={
-                        x:req.body.destinationX,
-                        y:req.body.destinationY
+                        x:datas.location.busy[req.body.userId].x,
+                        y:datas.location.busy[req.body.userId].y
                     };
+                    delete datas.location.busy[req.body.userId];
+
                     res.dump('ok');
 
                     //todo 通知
