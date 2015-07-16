@@ -267,11 +267,15 @@ order.fromCancel = function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
-                    datas.location.free[req.body.toUserId]={
-                        x:datas.location.busy[req.body.toUserId].x,
-                        y:datas.location.busy[req.body.toUserId].y
-                };
-                delete datas.location.busy[req.body.toUserId];
+                    if(datas.location.busy[req.body.toUserId]){
+
+                        datas.location.free[req.body.toUserId]={
+                            x:datas.location.busy[req.body.toUserId].x,
+                            y:datas.location.busy[req.body.toUserId].y
+                        };
+                        delete datas.location.busy[req.body.toUserId];
+                    }
+
                     //todo 通知
 //
 //                    var style = new Xinge.Style();
