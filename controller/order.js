@@ -1,7 +1,5 @@
 var datas = require('../datas.js');
 var common = require('../libs/common.js');
-var config = require('../config.js');
-var notice = require('../libs/notice.js');
 var conn = require('../mysql.js');
 var libs = require('../libs/libs.js');
 
@@ -206,12 +204,12 @@ console.log("最小的距离",minDistance);
 
 
 
-                                                    notice.send(toUserId,"你有一个新单子","点击查看详情",{
-                                                        fromUserId:req.body.userId,
-                                                        fromUserNickname:datas.token[req.body.userId].nickname,
-                                                        fromUserTel:datas.token[req.body.userId].tel,
-                                                        fromUserGender:datas.token[req.body.userId].gender
-                                                    });
+                                                    //notice.send(toUserId,"你有一个新单子","点击查看详情",{
+                                                    //    fromUserId:req.body.userId,
+                                                    //    fromUserNickname:datas.token[req.body.userId].nickname,
+                                                    //    fromUserTel:datas.token[req.body.userId].tel,
+                                                    //    fromUserGender:datas.token[req.body.userId].gender
+                                                    //});
 
 
                                                 }
