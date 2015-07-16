@@ -55,7 +55,7 @@ order.disable = function(req,res){
 
 
 order.order  = function(req,res){
-//console.log(req.body);
+console.log(req.body);
     if(!req.body.x){
         res.dump('noX');
         return;
@@ -71,7 +71,7 @@ order.order  = function(req,res){
         return;
     }
 
-
+console.log("sql1:"+"select * from minutes_order where (fromUserId="+req.body.userId+" or toUserId="+req.body.userId+") and status<=1");
     conn.query(
         {
             sql:"select * from minutes_order where (fromUserId="+req.body.userId+" or toUserId="+req.body.userId+") and status<=1"
@@ -108,6 +108,9 @@ console.log(minDistance);
                                 console.log(toUserId);
                             }
                         }
+                        
+                        
+                        console.log("sql2"+"select * from minutes_user where id="+toUserId);
                         conn.query(
                             {
                                 sql:"select * from minutes_user where id="+toUserId
@@ -120,6 +123,8 @@ console.log(minDistance);
 
                                     if(rrr.length>0){
 
+                                        console.log("sql3"+"insert into minutes_order (fromUserId,createAt,positionX,positionY,toUserId,status) values (" +
+                                            ""+req.body.userId+","+common.time()+","+req.body.x+","+req.body.y+","+toUserId+",0)");
                                         conn.query(
                                             {
                                                 sql:"insert into minutes_order (fromUserId,createAt,positionX,positionY,toUserId,status) values (" +
