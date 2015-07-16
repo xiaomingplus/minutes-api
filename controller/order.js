@@ -250,6 +250,11 @@ order.fromCancel = function(req,res){
         return;
     }
 
+    if(!req.body.toUserId){
+        res.dump("noToUserId");
+        return;
+    }
+
     conn.query(
         {
             sql:"update minutes_order set status=3 where id="+req.body.orderId+" and fromUserId="+req.body.userId+" and status<=1"
@@ -262,11 +267,11 @@ order.fromCancel = function(req,res){
                 //console.log(r);
 
                 if(r.affectedRows>0){
-                    datas.location.free[req.body.userId]={
-                        x:datas.location.busy[req.body.userId].x,
-                        y:datas.location.busy[req.body.userId].y
+                    datas.location.free[req.body.toUserId]={
+                        x:datas.location.busy[req.body.toUserId].x,
+                        y:datas.location.busy[req.body.toUserId].y
                 };
-                delete datas.location.busy[req.body.userId];
+                delete datas.location.busy[req.body.toUserId];
                     //todo 通知
 //
 //                    var style = new Xinge.Style();

@@ -179,6 +179,10 @@ var code  = {
     'noToken':{
         code:1043,
         message:"缺少参数 token"
+    },
+    'toUserId':{
+        code:1044,
+        message:"缺少参数 toUserId"
     }
 
 
