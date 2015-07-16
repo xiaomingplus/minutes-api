@@ -175,6 +175,11 @@ console.log(minDistance);
                                                     androidMessage.sendTime = parseInt(new Date().getTime()/1000);
                                                     androidMessage.expireTime = 0;
 //androidMessage.acceptTime.push(new Xinge.TimeInterval(0, 0, 23, 59));
+                                                    
+                                                    console.log({
+                                                        'id': rr.insertId+"",
+                                                        'score':""+rrr[0].fromScore
+                                                    });
                                                     androidMessage.customContent = {
                                                         'id': rr.insertId+"",
                                                         'score':""+rrr[0].fromScore
@@ -186,7 +191,8 @@ console.log(minDistance);
 
 
 //推送消息给指定账户或别名
-                                                    XingeApp.pushToSingleAccount(rrr[0].toUserId, androidMessage, function(err, result){
+                                                    console.log("toUser:"+rrr[0].toUserId);
+                                                    XingeApp.pushToSingleAccount(""+rrr[0].toUserId, androidMessage, function(err, result){
                                                         console.log(err,result);
                                                     });
 
