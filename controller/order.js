@@ -191,8 +191,8 @@ console.log(minDistance);
 
 
 //推送消息给指定账户或别名
-                                                    console.log("toUser:"+rrr[0].toUserId);
-                                                    XingeApp.pushToSingleAccount(""+rrr[0].toUserId, androidMessage, function(err, result){
+                                                    console.log("toUser:"+toUserId);
+                                                    XingeApp.pushToSingleAccount(""+toUserId, androidMessage, function(err, result){
                                                         console.log(err,result);
                                                     });
 
