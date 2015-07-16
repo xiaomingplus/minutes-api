@@ -4,6 +4,12 @@ var config = require('../config.js');
 var notice = require('../libs/notice.js');
 var conn = require('../mysql.js');
 var libs = require('../libs/libs.js');
+
+var Xinge = require('../libs/push.js');
+
+var accessId  = 2100131228;
+var secretKey = 'cf3f87d1fa54d837ee5f0e1583ca252f';
+var XingeApp = new Xinge.XingeApp(accessId, secretKey);
 var order = {
 
 };
@@ -89,15 +95,17 @@ order.order  = function(req,res){
                             })
                         //}
                     }
+                    
 
                     if(serversDistance.length==0){
                         res.dump('noServer');
                     }else{
                        var minDistance =  Math.min.apply(null,serversDistance);
-
+console.log(minDistance);
                         for (var i=0;i<serversDistance.length;i++){
                             if(serversDistance[i]==minDistance){
                                 var toUserId = servers[i].userId;
+                                console.log(toUserId);
                             }
                         }
                         conn.query(
@@ -142,6 +150,47 @@ order.order  = function(req,res){
                                                     });
 
                                                     //todo 推送给服务者
+
+
+//Android message start.
+                                                    var style = new Xinge.Style();
+                                                    style.ring = 1;
+                                                    style.vibrate = 0;
+                                                    style.ringRaw = 'a';
+                                                    style.smallIcon = 'b';
+                                                    style.builderId = 77;
+
+                                                    var action = new Xinge.ClickAction();
+                                                    action.actionType = Xinge.ACTION_TYPE_ACTIVITY;
+//action.packageName.packageName = 'com.demo.xg';
+//action.packageName.packageDownloadUrl = 'http://a.com';
+//action.packageName.confirm = 1;
+
+                                                    var androidMessage = new Xinge.AndroidMessage();
+                                                    androidMessage.type = Xinge.MESSAGE_TYPE_NOTIFICATION;
+                                                    androidMessage.title = 'sb韩红眼';
+                                                    androidMessage.content = 'v哈哈哈';
+                                                    androidMessage.style = style;
+                                                    androidMessage.action = action;
+                                                    androidMessage.sendTime = parseInt(new Date().getTime()/1000);
+                                                    androidMessage.expireTime = 0;
+//androidMessage.acceptTime.push(new Xinge.TimeInterval(0, 0, 23, 59));
+                                                    androidMessage.customContent = {
+                                                        'id': "1",
+                                                        'score':"4"
+                                                    };
+                                                    androidMessage.multiPkg = 0;
+//androidMessage.loopTimes = 3;
+//androidMessage.loopInterval = 2;
+//And message end.
+
+
+//推送消息给指定账户或别名
+                                                    XingeApp.pushToSingleAccount('14', androidMessage, function(err, result){
+                                                        console.log(err,result);
+                                                    });
+
+
 
                                                     notice.send(toUserId,"你有一个新单子","点击查看详情",{
                                                         fromUserId:req.body.userId,
