@@ -55,7 +55,7 @@ order.disable = function(req,res){
 
 
 order.order  = function(req,res){
-
+console.log(req.body);
     if(!req.body.x){
         res.dump('noX');
         return;
@@ -168,8 +168,8 @@ console.log(minDistance);
 
                                                     var androidMessage = new Xinge.AndroidMessage();
                                                     androidMessage.type = Xinge.MESSAGE_TYPE_NOTIFICATION;
-                                                    androidMessage.title = 'sb韩红眼';
-                                                    androidMessage.content = 'v哈哈哈';
+                                                    androidMessage.title = '您有一个新订单';
+                                                    androidMessage.content = '点击查看详情';
                                                     androidMessage.style = style;
                                                     androidMessage.action = action;
                                                     androidMessage.sendTime = parseInt(new Date().getTime()/1000);
