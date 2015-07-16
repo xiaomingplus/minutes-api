@@ -82,12 +82,12 @@ order.order  = function(req,res){
                     var serversDistance = [],servers=[];
                     for(var i in datas.location.free){
                         var distance = common.getDistance(req.body.x,req.body.y,datas.location.free[i].x,datas.location.free[i].y);
-                        if(distance<config.maxDistance){
+                        //if(distance<config.maxDistance){
                             serversDistance.push(distance);
                             servers.push({
                                 userId:i
                             })
-                        }
+                        //}
                     }
 
                     if(serversDistance.length==0){
